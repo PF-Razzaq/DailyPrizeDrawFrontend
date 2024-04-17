@@ -1,0 +1,8 @@
+.form-bg-color {
+  background: linear-gradient(135deg, #662d8c, #ed1e79);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
