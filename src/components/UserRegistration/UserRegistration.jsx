@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 import "./UserRegistration.css";
 import { API_URL_USERS } from "../../index";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserForm = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const UserForm = () => {
     phoneNo: "",
     password: "",
     confirmPassword: "",
-    role: "user", // Default role
+    role: "user",
   });
 
   const [passwordError, setPasswordError] = useState("");
@@ -143,7 +143,7 @@ const UserForm = () => {
 
             <Form.Control type="hidden" name="role" value="user" />
 
-            <Button variant="primary" className="mt-2" type="submit">
+            <Button variant="primary" className="mt-4 w-100" type="submit">
               Submit
             </Button>
           </Form>

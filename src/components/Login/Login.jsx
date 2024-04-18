@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 import { API_URL_USERS } from "../../index";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import Sidebar from "../Sidebar/Sidebar";
 
 const Login = () => {
   const [users, setUsers] = useState([]);
@@ -64,54 +65,60 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="form-bg-color">
-      <Container className="mt-5 col-md-4 border-none p-3 bg-light rounded">
-        <h1 className="text-center">User Login</h1>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+    <>
+      <div className="d-flex">
+        <div className="form-bg-color w-100">
+          <Container className="mt-5 col-md-4 border-none p-3 bg-light rounded">
+            <h1 className="text-center">User Login</h1>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="email">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
 
-          <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="role">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              as="select"
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Role</option>
-              <option value="user">user</option>
-              <option value="admin">admin</option>
-            </Form.Control>
-          </Form.Group>
+              <Form.Group controlId="password">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+              <Form.Group controlId="role">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  as="select"
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" selected disabled>
+                    Select Role
+                  </option>
+                  <option value="user">user</option>
+                  <option value="admin">admin</option>
+                </Form.Control>
+              </Form.Group>
 
-          {passwordError && <Alert variant="danger">{passwordError}</Alert>}
+              {passwordError && <Alert variant="danger">{passwordError}</Alert>}
 
-          <Button variant="primary" className="mt-2" type="submit">
-            Login
-          </Button>
-        </Form>
-      </Container>
-    </div>
+              <Button variant="primary" className="mt-4 w-100" type="submit">
+                Login
+              </Button>
+            </Form>
+          </Container>
+        </div>
+      </div>
+    </>
   );
 };
 
