@@ -15,7 +15,7 @@ const UserSidebar = () => {
                 Home
               </h5>
               <h5 className="mt-4 fw-bold">About</h5>
-              <h5 className="mt-4 fw-bold">Contant</h5>
+              <h5 className="mt-4 fw-bold">Contact</h5>
               <h5 className="mt-4 fw-bold">Testimonial</h5>
             </main>
             <div className="logout">

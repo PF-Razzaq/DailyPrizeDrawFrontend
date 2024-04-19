@@ -11,9 +11,14 @@ const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    role: "", // Added role to formData state
   });
   const navigate = useNavigate();
   const [passwordError, setPasswordError] = useState("");
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,26 +28,22 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const matchingAdmin = users.find(
-        (data) =>
-          data.email === formData.email &&
-          data.password === formData.password &&
-          data.role === "admin"
-      );
-
       const matchingUser = users.find(
         (data) =>
           data.email === formData.email &&
           data.password === formData.password &&
-          data.role === "user"
+          data.role === formData.role // Check role from form data
       );
 
-      if (matchingAdmin) {
-        navigate("/adminDashboard");
-      } else if (matchingUser) {
-        navigate("/userDashboard");
+      if (matchingUser) {
+        // Store user authentication in local storage
+        const isLoggedIn = localStorage.setItem("isLoggedIn", true);
+        const userId = localStorage.setItem("userId", matchingUser.id); // Assuming user ID is available
+        navigate(`/${formData.role}Dashboard`);
+        console.log("isLoggedIn", isLoggedIn); // Redirect to respective dashboard
+        console.log("userId", userId); // Redirect to respective dashboard
       } else {
-        setPasswordError("Invalid email or password");
+        setPasswordError("Invalid email, password, or role");
       }
     } catch (error) {
       console.error("Error handling form submission:", error);
@@ -59,10 +60,6 @@ const Login = () => {
       // Handle error gracefully, display an error message to the user, etc.
     }
   };
-
-  useEffect(() => {
-    getUsers();
-  }, []);
 
   return (
     <>
@@ -93,7 +90,7 @@ const Login = () => {
                 />
               </Form.Group>
               <Form.Group controlId="role">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Role</Form.Label>
                 <Form.Control
                   as="select"
                   name="role"
@@ -101,7 +98,7 @@ const Login = () => {
                   onChange={handleChange}
                   required
                 >
-                  <option value="" selected disabled>
+                  <option value="" disabled>
                     Select Role
                   </option>
                   <option value="user">user</option>
