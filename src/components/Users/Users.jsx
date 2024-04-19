@@ -62,7 +62,7 @@ const Users = () => {
   const handleDelete = async (userId) => {
     try {
       console.log("Deleting user with ID:", userId);
-      await axios.delete(`${API_URL_USERS}/${userId}`);
+      await axios.delete(`${API_URL_USERS}${userId}`);
       getUsers(); // Refresh user list after deleting
       console.log("Deletion successful");
     } catch (error) {
@@ -77,7 +77,7 @@ const Users = () => {
           <Sidebar />
         </div>
         <div className=" mx-auto mt-5 w-75">
-          <h2 className="text-center fs-1">Users</h2>
+          <h2 className="text-center fs-1">Admin Dashboard</h2>
           <Button
             variant="warning"
             className="my-2"

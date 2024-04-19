@@ -38,7 +38,7 @@ const Login = () => {
       );
 
       if (matchingAdmin) {
-        navigate("/users");
+        navigate("/adminDashboard");
       } else if (matchingUser) {
         navigate("/userDashboard");
       } else {

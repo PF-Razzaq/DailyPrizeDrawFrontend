@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
 import { useNavigate } from "react-router-dom";
 
-const Sidebar = () => {
+const UserSidebar = () => {
   const navigate = useNavigate();
   return (
     <>
       <div className="main-div">
         <div className="left">
-          <div className="sidebar">
+          <div className="sidebar bg-success">
             <main className="main">
-              <h4 className="fw-bold">Admin Dashboard</h4>
+              <h4 className="fw-bold">User Dashboard</h4>
               <h5 className="fw-bold" style={{ marginTop: "5rem" }}>
                 Home
               </h5>
@@ -53,4 +53,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default UserSidebar;

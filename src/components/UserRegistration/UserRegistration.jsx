@@ -45,7 +45,7 @@ const UserForm = () => {
       setPasswordError("");
       setSubmitError("");
       console.log("Form submitted successfully");
-      navigate("/users");
+      navigate("/adminDashboard");
     } catch (error) {
       setSubmitError("Error submitting data. Please try again later.");
       console.error("Error submitting data:", error);
